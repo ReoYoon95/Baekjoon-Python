@@ -29,3 +29,34 @@ elif A == B or B == C or A == C:
         print(1000 + (A * 100))
 elif A != B != C:
     print(max(A, B, C) * 100)
+
+
+# 리스트로 받아서 정렬하기
+nums = sorted(list(map(int, input().split())))  # 예: [3, 3, 6]
+A, B, C = nums
+
+if A == C:  # 정렬했는데 양 끝이 같다면 세 개 다 같은 것!
+    print(10000 + A * 1000)
+elif A == B or B == C:  # 정렬했으니 가운데(B)는 무조건 겹치는 숫자가 됩니다.
+    print(1000 + B * 100)
+else:  # 정렬했으니 가장 큰 숫자는 무조건 마지막(C)입니다.
+    print(C * 100)
+
+# set 을 이용한 방식
+
+dice = list(map(int, input().split()))
+unique_dice = set(dice)  # 중복 제거
+count = len(unique_dice)  # 남은 종류의 개수
+
+if count == 1:
+    # 종류가 1개다 = 3개가 다 똑같다
+    print(10000 + dice[0] * 1000)
+elif count == 2:
+    # 종류가 2개다 = 2개는 같고 1개는 다르다
+    # 어떤 게 중복인지 찾으려면? 전체 합에서 set의 합을 이용하거나 정렬을 씁니다.
+    # 가장 쉬운 건, 정렬했을 때 '가운데 값'은 무조건 중복된 값입니다!
+    dice.sort()
+    print(1000 + dice[1] * 100)
+else:
+    # 종류가 3개다 = 다 다르다
+    print(max(dice) * 100)
